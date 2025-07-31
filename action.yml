@@ -12,7 +12,7 @@ runs:
         #!/bin/bash
         set -e
         cmd_hash=$(echo "$@" | sha1sum | awk '{print $1}')
-        sudo strace -tt -f -o strace_logs/step_${cmd_hash}.log /bin/bash "$@"
+        sudo -E strace -tt -f -o strace_logs/step_${cmd_hash}.log /bin/bash "$@"
         EOF
         chmod +x ci-bin/bash
         echo "$GITHUB_WORKSPACE/ci-bin" >> $GITHUB_PATH
