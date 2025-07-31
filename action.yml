@@ -1,7 +1,3 @@
-name: Setup strace logging
-description: Creates a strace-wrapped bash shell for all CI commands
-author: clonedSemicolon
-
 runs:
   using: "composite"
   steps:
@@ -12,6 +8,7 @@ runs:
         #!/bin/bash
         set -e
         cmd_hash=$(echo "$@" | sha1sum | awk '{print $1}')
+        mkdir -p strace_logs
         sudo -E strace -tt -f -o strace_logs/step_${cmd_hash}.log /bin/bash "$@"
         EOF
         chmod +x ci-bin/bash
