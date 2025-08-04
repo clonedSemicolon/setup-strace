@@ -1,3 +1,7 @@
+name: Setup strace logging
+description: Creates a strace-wrapped bash shell for all CI commands
+author: clonedSemicolon
+
 runs:
   using: "composite"
   steps:
